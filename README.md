@@ -3,9 +3,9 @@
 react-quill을 이용한 웹 에디터 만들기
 ```tsx
 <ReactQuill modules={{
-	toolbar: [
-		['image'],
-	  ['bold', 'italic', 'underline', 'strike'],
+  toolbar: [
+    ['image'],
+    ['bold', 'italic', 'underline', 'strike'],
     ['blockquote', 'code-block'],
     [{ 'header': 1 }, { 'header': 2 }],
     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -18,7 +18,7 @@ react-quill을 이용한 웹 에디터 만들기
     [{ 'font': [] }],
     [{ 'align': [] }],
     ['clean']
-	]
+  ]
 }}/>
 ```
 
@@ -27,7 +27,7 @@ react-quill을 이용한 웹 에디터 만들기
 - localStoreage를 이용한 데이터 저장
 ```tsx
 const [post, setPost] = useState<string[]>(() => {
-	const data = localStorage.getItem('data')
+  const data = localStorage.getItem('data')
   try {
     if(data)
       return JSON.parse(data)
@@ -42,17 +42,15 @@ const [post, setPost] = useState<string[]>(() => {
 ```
 ```tsx
 <button onClick={() => {
-	if(content.length === 0) {
-	  alert('아무것도 입력되지 않았습니다.')
+  if(content.length === 0) {
+    alert('아무것도 입력되지 않았습니다.')
     return;
-	}
-	setPost(prev => {
-	  const rs = [...prev, content]
+  }
+  setPost(prev => {
+    const rs = [...prev, content]
     localStorage.setItem('data', JSON.stringify(post))
     return rs
   })
-	setContent('')
-}}>
-	발행
-</button>
+  setContent('')
+}}>발행</button>
 ```

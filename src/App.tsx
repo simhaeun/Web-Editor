@@ -84,13 +84,14 @@ function App() {
               localStorage.removeItem('tmp')
               setPost(prev => {
                 const rs = [...prev, content]
-                localStorage.setItem('data', JSON.stringify(post))
+                localStorage.setItem('data', JSON.stringify(rs))
                 return rs
               })
               setContent('')
             }}>
               발행
             </button>
+
             <button onClick={() => {
               if(window.confirm("정말 초기화 하겠습니까?")) {
                 localStorage.clear();

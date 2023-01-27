@@ -71,12 +71,12 @@ function App() {
             <li></li>
           </ul>
           <div className='address button'>web.editor.com</div>
-          <div className='button'>💌</div>
+          <div className='button'>🌐</div>
         </header>
         <div className='nav'>
           <h2>Web Editor</h2>
           <div className='btn'>
-            <button onClick={() => {
+            <button className='publish_btn' onClick={() => {
               if(content.length === 0) {
                 alert('아무것도 입력되지 않았습니다.')
                 return;

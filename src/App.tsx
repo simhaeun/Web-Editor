@@ -42,16 +42,16 @@ function App() {
       changeCountRef.current = 0
       changeRef.current  = false;
       localStorage.setItem('tmp', ref.current)
-      console.log('너무 많은 변화에 의하여 바로 저장!')
+      // console.log('너무 많은 변화에 의하여 바로 저장!')
     }
   }, [content])
 
   useEffect(() => {
     const intv = setInterval(() =>{
-      console.log("인터벌이 일어남")
-      console.log(ref.current)
+      // console.log("인터벌이 일어남")
+      // console.log(ref.current)
       if(changeRef.current) {
-        console.log("값이 바뀜!", ref.current)
+        // console.log("값이 바뀜", ref.current)
         localStorage.setItem('tmp', ref.current)
         changeRef.current = false;
         changeCountRef.current = 0;
@@ -61,82 +61,93 @@ function App() {
   },[])
 
   return (
+    <>
+      <div className='bg'></div>
+      <div className='container'>
+        <header className='header'>
+          <ul className='dot'>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <div className='address button'>web.editor.com</div>
+          <div className='button'>💌</div>
+        </header>
+        <div className='nav'>
+          <h2>Web Editor</h2>
+          <div className='btn'>
+            <button onClick={() => {
+              if(content.length === 0) {
+                alert('아무것도 입력되지 않았습니다.')
+                return;
+              }
+              localStorage.removeItem('tmp')
+              setPost(prev => {
+                const rs = [...prev, content]
+                localStorage.setItem('data', JSON.stringify(post))
+                return rs
+              })
+              setContent('')
+            }}>
+              발행
+            </button>
+            <button onClick={() => {
+              if(window.confirm("정말 초기화 하겠습니까?")) {
+                localStorage.clear();
+                setPost([])
+              }
+            }}>
+              초기화
+            </button>
+          </div>
+        </div>
 
-    <div className='container'>
-      <h2 className='title'>Web Editor</h2>
-      <div className='editor'>
-        <button onClick={() => {
-          if(content.length === 0) {
-            alert('아무것도 입력되지 않았습니다.')
-            return;
-          }
-          localStorage.removeItem('tmp')
-          setPost(prev => {
-            const rs = [...prev, content]
-            localStorage.setItem('data', JSON.stringify(post))
-            return rs
-          })
-          setContent('')
-        }}>
-          발행
-        </button>
-        <button onClick={() => {
-          if(window.confirm("정말 초기화 하겠습니까?")) {
-            localStorage.clear();
-            setPost([])
-          }
-        }}>
-          초기화
-        </button>
-
-        <ReactQuill
-          style={{
-            margin: "8px",
-          }}
-          value={content}
-          onChange={setContent}
-          modules={{
-            toolbar: [
-              ['image'],
-              ['bold', 'italic', 'underline', 'strike'],
-              ['blockquote', 'code-block'],
-            
-              [{ 'header': 1 }, { 'header': 2 }],
-              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-              [{ 'script': 'sub'}, { 'script': 'super' }],
-              [{ 'indent': '-1'}, { 'indent': '+1' }],
-              [{ 'direction': 'rtl' }],
-            
-              [{ 'size': ['small', false, 'large', 'huge'] }],
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            
-              [{ 'color': [] }, { 'background': [] }],
-              [{ 'font': [] }],
-              [{ 'align': [] }],
-            
-              ['clean']
-            ]
-        }}/>
-      </div>
-
-
-
-      <div className='post'>
-        {
-          post.map((post, idx) => <div key={idx} 
-            style={{ 
-              border: "solid 1px #ccc",
-              padding: "8px",
-              margin: "8px"
+        <div className='editor'>
+          <ReactQuill
+            style={{
+              margin: "20px",
             }}
-          >
-            <div dangerouslySetInnerHTML={{
-              __html: post
-            }}/>
-          </div>)
-        }
+            value={content}
+            onChange={setContent}
+            modules={{
+              toolbar: [
+                ['image'],
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+
+                [{ 'header': 1 }, { 'header': 2 }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                [{ 'direction': 'rtl' }],
+              
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+              ]
+          }}/>
+        </div>
+
+        <div className='post'>
+          <h4>게시글</h4>
+          {
+            post.map((post, idx) => <div key={idx} 
+              style={{ 
+                border: "solid 1px #ccc",
+                padding: "20px",
+                margin: "20px"
+              }}
+            >
+              <div dangerouslySetInnerHTML={{
+                __html: post
+              }}/>
+            </div>)
+          }
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

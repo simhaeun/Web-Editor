@@ -1,16 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
-.container {
-  max-width: 1200px; 
-  min-height: 600px;
-  margin: 60px auto;
-  padding: 20px;
-  border-top: 10px solid #d8221b;
-  box-shadow: 0 0 4px #d47e7b;
+blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {margin:0;padding:0}
+h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight:400}
+ul {list-style:none}
+button, input, select {margin:0}
+html {box-sizing:border-box}
+*, :after, :before {box-sizing:inherit}
+img, video {height:auto;max-width:100%}
+iframe {border:0}
+table {border-collapse:collapse;border-spacing:0}
+td, th {padding:0}
+
+.bg {
+  background: url(./images/wallpaper.jpg) no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
 }
-.title {
+.header {
+  background: #e9e7e9;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+.dot {
+  display: flex;
+  align-items: center;
+}
+.dot li {
+  width: 14px;
+  height: 14px;
+  background: #ff6058;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.dot li:nth-child(2) {
+  background: #ffbf2e;
+}
+.dot li:nth-child(3) {
+  background: #29ca41;
+}
+.address {
+  width: 500px;
   text-align: center;
-  font-size: 40px;
+}
+.button {
+  background: #f7f7f7;
+  border-bottom: 1px solid #bebebe;
+  padding: 5px;
+  border-radius: 4px;
+}
+.container {
+  z-index: 100;
+  overflow-y: scroll;
+  width:  90%;
+  max-width: 1480px; 
+  height: 800px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 6px;
+}
+.nav {
+  background: #333333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 10px 20px;
   font-family: 'Prata', serif;
   font-weight: normal;
 } 
-
+.ql-editor {
+  min-height: 300px;
+}
+.post h4 {
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
